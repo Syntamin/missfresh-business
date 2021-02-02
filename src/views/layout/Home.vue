@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import LeftSlider from './components/leftSlider.vue';
-import HeaderNav from './components/headerNav.vue';
+import LeftSlider from './components/left-slider.vue';
+import HeaderNav from './components/header-nav.vue';
 
 export default {
   components: {

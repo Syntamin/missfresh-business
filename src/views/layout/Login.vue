@@ -32,6 +32,8 @@
 </template>
 <script>
 import user from '@/api/user';
+import constant from '@/constant/index';
+// import useCookie from '@/utils/useCookie';
 
 export default {
   data() {
@@ -72,13 +74,24 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          user.login(this.loginForm).then((res) => {
-            // jumpping to home page
-            console.log(res);
-            this.$router.push({
-              name: 'Home',
+          user
+            .login(this.loginForm)
+            .then((response) => {
+              console.log(response);
+              if (response.status === constant.SUCCESS) {
+                this.$store.dispatch('setUserInfo', response.data);
+                // jumpping to home page
+                this.$router.push({
+                  name: 'Home',
+                });
+              } else if (response.status === constant.FAIL) {
+                this.$message.error(response.msg);
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+              this.$message.error(error);
             });
-          });
           return true;
         }
         // console.log('error submit!!');

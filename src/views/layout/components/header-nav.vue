@@ -15,7 +15,7 @@
     </div>
     <ul class="header-info">
       <li>
-        white-also
+        {{ $store.state.user.username }}
         <a-icon type="down" />
       </li>
       <li>退出</li>
