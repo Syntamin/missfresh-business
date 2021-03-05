@@ -26,9 +26,6 @@
             .breadcrumb {
                 margin-left: 20px;
                 display: inline-block;
-                a {
-                    margin-left: 5px;
-                }
             }
             .header-info {
                 padding: 0 25px;
@@ -37,10 +34,13 @@
                 cursor: pointer;
 
                 li:not(:first-child) {
+                    width: 80px;
                     display: none;
                     background-color: #eee;
                     color: #999;
                     font-weight: 700;
+                    position: absolute;
+                    z-index: 100;
                 }
                 &:hover {
                     li {

@@ -1,8 +1,11 @@
 <template>
   <div class="home">
-    <left-slider></left-slider>
+    <left-slider :key="key"></left-slider>
     <div :class="{ 'main-app': true, 'menu-unfold': $store.state.collapsed }">
+      <!-- nav -->
       <header-nav></header-nav>
+      <!-- content -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -18,9 +21,13 @@ export default {
   },
   data() {
     return {
+      key: new Date().getTime(),
     };
   },
-  methods: {
+  watch: {
+    $route() {
+      this.key = new Date().getTime();
+    },
   },
 };
 </script>

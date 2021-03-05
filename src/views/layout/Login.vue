@@ -31,9 +31,8 @@
   </div>
 </template>
 <script>
-import user from '@/api/user';
+import apiUser from '@/api/user';
 import constant from '@/constant/index';
-// import useCookie from '@/utils/useCookie';
 
 export default {
   data() {
@@ -74,10 +73,9 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          user
+          apiUser
             .login(this.loginForm)
             .then((response) => {
-              console.log(response);
               if (response.status === constant.SUCCESS) {
                 this.$store.dispatch('setUserInfo', response.data);
                 // jumpping to home page
@@ -89,7 +87,6 @@ export default {
               }
             })
             .catch((error) => {
-              console.log(error);
               this.$message.error(error);
             });
           return true;
